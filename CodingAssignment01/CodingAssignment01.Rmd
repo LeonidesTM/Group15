@@ -2,11 +2,11 @@
 title: "Coding Assignment 1"
 author: "Team N"
 date: "Due: 2023-10-01 23:59"
-output: 
+output:
   html_document:
-    toc: true
+    toc: yes
     toc_depth: 2
-    toc_float: true
+    toc_float: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -38,6 +38,9 @@ Answer the following questions using complete sentences and attach all output, p
 
 ```{r dataset, include=FALSE}
 # Bring in the dataset here
+Insurance_Data_Group15 <- read_csv <- read.csv("..//Data/Insurance_Data_Group15.csv")
+
+
 
 
 ```
@@ -50,23 +53,34 @@ Perform univariate analyses on the quantitative variables (center, shape, spread
 
 ```{r q1}
 
+
+summary(Insurance_Data_Group15$Charges)
+
+hist(Insurance_Data_Group15$Charges)
+summary(Insurance_Data_Group15$Age)
+hist(Insurance_Data_Group15$Age)
+summary(Insurance_Data_Group15$BMI)
+hist(Insurance_Data_Group15$BMI)
+summary(Insurance_Data_Group15$Children)
+hist(Insurance_Data_Group15$Children)
+
+
 ```
+room for description
 
 # Question 2
 
 Perform bivariate analyses on the quantitative variables (direction, strength and form). Describe the linear association between all variables. 
 
 ```{r q2}
-
-```
+plot(Insurance_Data_Group15$Age, Insurance_Data_Group15$Charges)
 
 # Question 3
 
-Generate a regression equation in the following form:
 
-$$Charges = \beta_{0}+\beta_{1}*Age+\beta_{2}*BMI+\beta_{3}*Children$$
 
-```{r q3}
+
+
 
 ```
 
