@@ -1,0 +1,221 @@
+---
+title: "Coding Assignment 1"
+author: "Group 15"
+date: "Due: 2023-10-01 23:59"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages}
+# Put any packages you want here
+library(gt)
+library(tidyverse)
+library(gtsummary)
+library(plotly)
+library(readxl)
+library(plotly)
+library(corrplot)
+```
+
+
+A Florida health insurance company wants to predict annual claims for individual clients. The company pulls a random sample of 100 customers. The owner wishes to charge an actuarially fair premium to ensure a normal rate of return. The owner collects all of their current customer’s health care expenses from the last year and compares them with what is known about each customer’s plan. 
+
+The data on the 100 customers in the sample is as follows:
+
+-	Charges: Total medical expenses for a particular insurance plan (in dollars)
+-	Age: Age of the primary beneficiary
+-	BMI: Primary beneficiary’s body mass index (kg/m2)
+-	Female: Primary beneficiary’s birth sex (0 = Male, 1 = Female)
+-	Children: Number of children covered by health insurance plan (includes other dependents as well)
+-	Smoker: Indicator if primary beneficiary is a smoker (0 = non-smoker, 1 = smoker)
+-	Cities: Dummy variables for each city with the default being Sanford
+
+Answer the following questions using complete sentences and attach all output, plots, etc. within this report.
+
+
+**For this assignment, ignore the categorical variables (gender, smoker, cities)**
+
+```{r dataset, include=FALSE}
+# Bring in the dataset here
+Insurance_Data_Group15 <- read_csv <- read.csv("Insurance_Data_Group15.csv")
+
+
+
+
+```
+
+
+
+# Question 1
+
+Perform univariate analyses on the quantitative variables (center, shape, spread). Include descriptive statistics, and histograms. Be sure to use terms discussed in class such as bimodal, skewed left, etc.
+
+## Center
+This will contain the mean, median and mode.
+
+```{r q1}
+mean(Insurance_Data_Group15$Charges)
+mean(Insurance_Data_Group15$Age)
+mean(Insurance_Data_Group15$BMI)
+mean(Insurance_Data_Group15$Children)
+median(Insurance_Data_Group15$Charges)
+median(Insurance_Data_Group15$Age)
+median(Insurance_Data_Group15$BMI)
+median(Insurance_Data_Group15$Children)
+
+getModes <- function(x) {
+  ux <- unique(x)
+  tab <- tabulate(match(x, ux))
+  ux[tab == max(tab)]
+}
+getModes(Insurance_Data_Group15$Charges)
+getModes(Insurance_Data_Group15$Age)
+getModes(Insurance_Data_Group15$BMI)
+getModes(Insurance_Data_Group15$Children)
+```
+## Shape
+For this, I am going to create a histogram on the variables
+ 
+Shape (unimodal, symmetric)
+```{r q1}
+hist(Insurance_Data_Group15$Charges)
+hist(Insurance_Data_Group15$Age)
+hist(Insurance_Data_Group15$BMI)
+hist(Insurance_Data_Group15$Children)
+
+```
+## Spread and ## Visualization
+ (standard deviation, high/low, range)
+```{r q1}
+var(Insurance_Data_Group15$Charges, na.rm = TRUE)
+sd(Insurance_Data_Group15$Charges, na.rm = TRUE)
+IQR(Insurance_Data_Group15$Charges, na.rm = TRUE)
+range(Insurance_Data_Group15$Charges, na.rm = TRUE)
+
+var(Insurance_Data_Group15$Age, na.rm = TRUE)
+sd(Insurance_Data_Group15$Age, na.rm = TRUE)
+IQR(Insurance_Data_Group15$Age, na.rm = TRUE)
+range(Insurance_Data_Group15$Age, na.rm = TRUE)
+
+var(Insurance_Data_Group15$BMI, na.rm = TRUE)
+sd(Insurance_Data_Group15$BMI, na.rm = TRUE)
+IQR(Insurance_Data_Group15$BMI, na.rm = TRUE)
+range(Insurance_Data_Group15$BMI, na.rm = TRUE)
+
+var(Insurance_Data_Group15$Children, na.rm = TRUE)
+sd(Insurance_Data_Group15$Children, na.rm = TRUE)
+IQR(Insurance_Data_Group15$Children, na.rm = TRUE)
+range(Insurance_Data_Group15$Children, na.rm = TRUE)
+
+boxplot(Insurance_Data_Group15$Charges)
+boxplot(Insurance_Data_Group15$Age)
+boxplot(Insurance_Data_Group15$BMI)
+boxplot(Insurance_Data_Group15$Children)
+```
+Leo's 123-136
+```{r q1}
+
+
+summary(Insurance_Data_Group15$Charges)
+hist(Insurance_Data_Group15$Charges)
+summary(Insurance_Data_Group15$Age)
+hist(Insurance_Data_Group15$Age)
+summary(Insurance_Data_Group15$BMI)
+hist(Insurance_Data_Group15$BMI)
+summary(Insurance_Data_Group15$Children)
+hist(Insurance_Data_Group15$Children)
+
+
+```
+# Question 2
+
+Perform bivariate analyses on the quantitative variables (direction, strength and form). Describe the linear association between all variables. 
+
+Strength of Linear Relationships
+Descriptive Statistics→Displaying/Summarizing Data→ Bivariate Analysis 20 / 26
+
+Outliers and Correlation
+
+Linear vs Curvilinear Relationships
+Descriptive Statistics→Displaying/Summarizing Data→ Bivariate Analysis 19 / 26
+
+
+## Direction and Strength 
+Range is [-1, 1]
+Closer to -1, the stronger the negative linear relationship
+Closer to 1, the stronger the positive linear relationship
+Closer to 0, the weaker the linear relationship
+
+```{r  q2}
+cor(Insurance_Data_Group15$Charges,Insurance_Data_Group15$Age)
+cor(Insurance_Data_Group15$Charges,Insurance_Data_Group15$BMI)
+cor(Insurance_Data_Group15$Charges,Insurance_Data_Group15$Children)
+cor(Insurance_Data_Group15$Age,Insurance_Data_Group15$BMI)
+cor(Insurance_Data_Group15$Age,Insurance_Data_Group15$Children)
+cor(Insurance_Data_Group15$BMI,Insurance_Data_Group15$Children)
+
+```
+## Form
+Visualize this relationship with a scatterplot
+
+
+```{r  q2}
+plot(Insurance_Data_Group15$Charges,Insurance_Data_Group15$Age,
+     xlab = "Charges",
+     ylab = "Age")
+plot(Insurance_Data_Group15$Charges,Insurance_Data_Group15$BMI,
+     xlab = "Charges",
+     ylab = "BMI")
+plot(Insurance_Data_Group15$Charges,Insurance_Data_Group15$Children,
+     xlab = "Charges",
+     ylab = "Children")
+plot(Insurance_Data_Group15$Age,Insurance_Data_Group15$BMI,
+     xlab = "Age",
+     ylab = "BMI")
+plot(Insurance_Data_Group15$Age,Insurance_Data_Group15$Children,
+     xlab = "Age",
+     ylab = "Children")
+plot(Insurance_Data_Group15$BMI,Insurance_Data_Group15$Children,
+     xlab = "BMI",
+     ylab = "Children")
+
+```
+LEO's 190-192
+```{r q2}
+plot(Insurance_Data_Group15$Age, Insurance_Data_Group15$Charges)
+
+```
+# Question 3
+
+Generate a regression equation in the following form:
+
+Charges = B0 + B1 * Age + B2 * BMI + B3 * Children
+
+An eager insurance representative comes back with a potential client. The client is 40, their BMI is 30, and they have one dependent. Using the regression equation above, predict the amount of medical expenses associated with this policy. (Provide a 95% confidence interval as well)
+
+```{r q3}
+
+
+model <- lm(Insurance_Data_Group15$Charges ~ Insurance_Data_Group15$Age + Insurance_Data_Group15$BMI + Insurance_Data_Group15$Children, data = Insurance_Data_Group15)
+
+summary(model)
+
+
+```
+
+
+```{r q4}
+newPrediction <- data.frame(Age = 40, BMI = 30, Children = 1)
+
+predict(model,
+        newdata = newPrediction,
+        interval = "confidence",
+        level = .95)
+```
