@@ -1,6 +1,6 @@
 ---
 title: "Coding Assignment 1"
-author: "Team N"
+author: "Group 15"
 date: "Due: 2023-10-01 23:59"
 output:
   html_document:
@@ -15,7 +15,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r packages}
 # Put any packages you want here
-
+library(gt)
+library(tidyverse)
+library(gtsummary)
+library(plotly)
+library(readxl)
+library(plotly)
+library(corrplot)
 ```
 
 
@@ -38,59 +44,221 @@ Answer the following questions using complete sentences and attach all output, p
 
 ```{r dataset, include=FALSE}
 # Bring in the dataset here
-Insurance_Data_Group15 <- read_csv <- read.csv("..//Data/Insurance_Data_Group15.csv")
+Insurance_Data_Group15 <- read_csv <- read.csv("Insurance_Data_Group15.csv")
 
 
 
 
 ```
-
-
-
-# Question 1
+## Question 1
 
 Perform univariate analyses on the quantitative variables (center, shape, spread). Include descriptive statistics, and histograms. Be sure to use terms discussed in class such as bimodal, skewed left, etc.
 
-```{r q1}
+## Center
+This will contain the mean, median and mode.
 
+```{r q1Center}
+mean(Insurance_Data_Group15$Charges)
+mean(Insurance_Data_Group15$Age)
+mean(Insurance_Data_Group15$BMI)
+mean(Insurance_Data_Group15$Children)
+median(Insurance_Data_Group15$Charges)
+median(Insurance_Data_Group15$Age)
+median(Insurance_Data_Group15$BMI)
+median(Insurance_Data_Group15$Children)
 
-summary(Insurance_Data_Group15$Charges)
-
+getModes <- function(x) {
+  ux <- unique(x)
+  tab <- tabulate(match(x, ux))
+  ux[tab == max(tab)]
+}
+getModes(Insurance_Data_Group15$Charges)
+getModes(Insurance_Data_Group15$Age)
+getModes(Insurance_Data_Group15$BMI)
+getModes(Insurance_Data_Group15$Children)
+```
+## Shape
+For this, I am going to create a histogram on the variables
+ 
+Shape (unimodal, symmetric)
+```{r q1Shape}
 hist(Insurance_Data_Group15$Charges)
-summary(Insurance_Data_Group15$Age)
 hist(Insurance_Data_Group15$Age)
-summary(Insurance_Data_Group15$BMI)
 hist(Insurance_Data_Group15$BMI)
-summary(Insurance_Data_Group15$Children)
 hist(Insurance_Data_Group15$Children)
 
-
 ```
-room for description
+## Spread and Visualization
 
-# Question 2
+Standard deviation, high,low, range
+```{r q1Spread}
+var(Insurance_Data_Group15$Charges, na.rm = TRUE)
+sd(Insurance_Data_Group15$Charges, na.rm = TRUE)
+IQR(Insurance_Data_Group15$Charges, na.rm = TRUE)
+range(Insurance_Data_Group15$Charges, na.rm = TRUE)
+
+var(Insurance_Data_Group15$Age, na.rm = TRUE)
+sd(Insurance_Data_Group15$Age, na.rm = TRUE)
+IQR(Insurance_Data_Group15$Age, na.rm = TRUE)
+range(Insurance_Data_Group15$Age, na.rm = TRUE)
+
+var(Insurance_Data_Group15$BMI, na.rm = TRUE)
+sd(Insurance_Data_Group15$BMI, na.rm = TRUE)
+IQR(Insurance_Data_Group15$BMI, na.rm = TRUE)
+range(Insurance_Data_Group15$BMI, na.rm = TRUE)
+
+var(Insurance_Data_Group15$Children, na.rm = TRUE)
+sd(Insurance_Data_Group15$Children, na.rm = TRUE)
+IQR(Insurance_Data_Group15$Children, na.rm = TRUE)
+range(Insurance_Data_Group15$Children, na.rm = TRUE)
+
+boxplot(Insurance_Data_Group15$Charges)
+boxplot(Insurance_Data_Group15$Age)
+boxplot(Insurance_Data_Group15$BMI)
+boxplot(Insurance_Data_Group15$Children)
+```
+
+## Summary 
+Charges: 
+
+Mean $12380.81 
+
+Median $8680.39 
+
+Mode no mode for data 
+
+The data for total medical expenses based on insurance plan for the sample of 100 customers is skewed to the right as seen in the histogram, this is due to the fact that the mean ($12381) is greater than the median ($8680). Another factor in the skewness of the data for charges are the outliers on the higher end of the data that lie past the middle 50% of responses. Based on the boxplot we can see how many outliers affect the data in the upper 25% of data. The data has no mode 
+
+ 
+
+Age: 
+
+Mean 39 years 
+
+Median 38.5 years 
+
+Mode 21, 19, 31 
+
+There is a wide range of responses to the age of the primary beneficiary that goes from just 18 years old to 64 years old. The actual distribution of the data shows a fairly uniform distribution with no clear outliers affecting skewness or shape. There is an almost even number of responses for each age listed. The boxplot created further shows the even spread of ages and that each quartile is roughly the same size. The data for ages is multimodal with the ages 19,21, and 31 showing up the most.  
+
+ 
+
+BMI: 
+
+Mean 30.03 
+
+Median 30.43 
+
+Mode 30.5 
+
+The data for BMI of the primary beneficiaries is normally distributed with a very slight skewness to the right. The mean and median are almost the same which tells us that the shape of the data will most likely be a normal bell curve. There are no outliers from this data set and based on the boxplot we can further see the normal distribution of data. The data is unimodal with the BMI of 30.5 showing up the most.  
+
+ 
+
+Children /Dependents Covered: 
+
+Mean  1.2 
+
+Median 1 
+
+Mode 0 
+
+The number of children/other dependents covered by insurance is skewed to the right and unimodal with the majority of responses showing that zero children/dependents are covered in the insurance plans. The mean and median are very similar at 1.2 and 1 respectively, but that doesn’t, in this case, show the whole story so the data is not normally distributed just based on that. We can see in the boxplot the skewness of the data and we can see that there is more variance in the upper quartile of the data that ranges from 2-3, while the lower 75% of data ranges from only 0-2.  
+
+
+## Question 2
 
 Perform bivariate analyses on the quantitative variables (direction, strength and form). Describe the linear association between all variables. 
 
-```{r q2}
-plot(Insurance_Data_Group15$Age, Insurance_Data_Group15$Charges)
+Strength of Linear Relationships
+Descriptive Statistics→Displaying/Summarizing Data→ Bivariate Analysis 20 / 26
 
-# Question 3
+Outliers and Correlation
+
+Linear vs Curvilinear Relationships
+Descriptive Statistics→Displaying/Summarizing Data→ Bivariate Analysis 19 / 26
 
 
+## Direction and Strength 
+Range is [-1, 1]
+Closer to -1, the stronger the negative linear relationship
+Closer to 1, the stronger the positive linear relationship
+Closer to 0, the weaker the linear relationship
+
+```{r  q2Correlation}
+cor(Insurance_Data_Group15$Charges,Insurance_Data_Group15$Age)
+cor(Insurance_Data_Group15$Charges,Insurance_Data_Group15$BMI)
+cor(Insurance_Data_Group15$Charges,Insurance_Data_Group15$Children)
+cor(Insurance_Data_Group15$Age,Insurance_Data_Group15$BMI)
+cor(Insurance_Data_Group15$Age,Insurance_Data_Group15$Children)
+cor(Insurance_Data_Group15$BMI,Insurance_Data_Group15$Children)
+
+```
+## Form
+Visualize this relationship with a scatterplot
 
 
+```{r  q2Plot}
+plot(Insurance_Data_Group15$Charges,Insurance_Data_Group15$Age,
+     xlab = "Charges",
+     ylab = "Age")
+plot(Insurance_Data_Group15$Charges,Insurance_Data_Group15$BMI,
+     xlab = "Charges",
+     ylab = "BMI")
+plot(Insurance_Data_Group15$Charges,Insurance_Data_Group15$Children,
+     xlab = "Charges",
+     ylab = "Children")
+plot(Insurance_Data_Group15$Age,Insurance_Data_Group15$BMI,
+     xlab = "Age",
+     ylab = "BMI")
+plot(Insurance_Data_Group15$Age,Insurance_Data_Group15$Children,
+     xlab = "Age",
+     ylab = "Children")
+plot(Insurance_Data_Group15$BMI,Insurance_Data_Group15$Children,
+     xlab = "BMI",
+     ylab = "Children")
+
+```
+
+## Summary
+(Charges vs Age) The linear scatterplot shows individual medical expenses (Charges) against the age of the individuals. The points are scattered somewhat randomly, without a clear pattern. The correlation coefficient between Charges and Age is approximately 0.30, indicating a weak positive relationship.  
+
+(Charges vs BMI) This linear scatterplot illustrates medical expenses (Charges) concerning the Body Mass Index (BMI) of individuals. Similar to the Charges vs. Age plot, the points are scattered without a distinct pattern. The correlation between Charges and BMI is approximately 0.13, suggesting another weak positive relationship. 
+
+(Charges vs Children) Here, this linear scatterplot compares medical expenses (Charges) to the number of children covered by the insurance plan. The points are dispersed across the plot without forming any recognizable pattern. The correlation between Charges and Children is approximately 0.04, indicating a very weak positive relationship. 
+
+(Age vs BMI) This linear scatter plot represents the relationship between the age of individuals and their Body Mass Index (BMI). The points are scattered with no apparent pattern. Age and BMI have a correlation of about 0.04, suggesting a weak positive relationship. 
+
+(Age vs Children) This linear scatterplot shows the age of individuals in relation to the number of children covered. The points exhibit a slightly more defined pattern than the previous plots, although they are still somewhat scattered. Age and Children have a correlation of about 0.08, indicating a slightly stronger,but still weak, positive relationship. 
+
+(BMI vs Children) This linear scatterplot compares the Body Mass Index (BMI) with the number of children covered by the insurance plan. The points are scattered across the plot with no clear trend. BMI and Children have a correlation of approximately -0.01, indicating a very weak negative relationship. 
+
+There are no clear patterns or trends in the data, reinforcing the weak linear associations observed in the correlation coefficients. 
+
+## Question 3
+
+Generate a regression equation in the following form:
+
+Charges = B0 + B1 * Age + B2 * BMI + B3 * Children
+
+An eager insurance representative comes back with a potential client. The client is 40, their BMI is 30, and they have one dependent. Using the regression equation above, predict the amount of medical expenses associated with this policy. (Provide a 95% confidence interval as well)
+
+```{r q3}
+
+
+model <- lm(Insurance_Data_Group15$Charges ~ Insurance_Data_Group15$Age + Insurance_Data_Group15$BMI + Insurance_Data_Group15$Children, data = Insurance_Data_Group15)
+
+summary(model)
 
 
 ```
 
-also write out the regression cleanly in this document.
-
-# Question 4
-
-An eager insurance representative comes back with a potential client. The client is 40, their BMI is 30, and they have one dependent. Using the regression equation above, predict the amount of medical expenses associated with this policy. (Provide a 95% confidence interval as well)
-
 
 ```{r q4}
+newPrediction <- data.frame(Age = 40, BMI = 30, Children = 1)
 
+predict(model,
+        newdata = newPrediction,
+        interval = "confidence",
+        level = .95)
 ```
