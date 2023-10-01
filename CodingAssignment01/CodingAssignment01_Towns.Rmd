@@ -50,17 +50,14 @@ Insurance_Data_Group15 <- read_csv <- read.csv("Insurance_Data_Group15.csv")
 
 
 ```
-
-
-
-# Question 1
+## Question 1
 
 Perform univariate analyses on the quantitative variables (center, shape, spread). Include descriptive statistics, and histograms. Be sure to use terms discussed in class such as bimodal, skewed left, etc.
 
 ## Center
 This will contain the mean, median and mode.
 
-```{r q1}
+```{r q1Center}
 mean(Insurance_Data_Group15$Charges)
 mean(Insurance_Data_Group15$Age)
 mean(Insurance_Data_Group15$BMI)
@@ -84,16 +81,17 @@ getModes(Insurance_Data_Group15$Children)
 For this, I am going to create a histogram on the variables
  
 Shape (unimodal, symmetric)
-```{r q1}
+```{r q1Shape}
 hist(Insurance_Data_Group15$Charges)
 hist(Insurance_Data_Group15$Age)
 hist(Insurance_Data_Group15$BMI)
 hist(Insurance_Data_Group15$Children)
 
 ```
-## Spread and ## Visualization
- (standard deviation, high/low, range)
-```{r q1}
+## Spread and Visualization
+
+Standard deviation, high,low, range
+```{r q1Spread}
 var(Insurance_Data_Group15$Charges, na.rm = TRUE)
 sd(Insurance_Data_Group15$Charges, na.rm = TRUE)
 IQR(Insurance_Data_Group15$Charges, na.rm = TRUE)
@@ -119,22 +117,8 @@ boxplot(Insurance_Data_Group15$Age)
 boxplot(Insurance_Data_Group15$BMI)
 boxplot(Insurance_Data_Group15$Children)
 ```
-Leo's 123-136
-```{r q1}
 
-
-summary(Insurance_Data_Group15$Charges)
-hist(Insurance_Data_Group15$Charges)
-summary(Insurance_Data_Group15$Age)
-hist(Insurance_Data_Group15$Age)
-summary(Insurance_Data_Group15$BMI)
-hist(Insurance_Data_Group15$BMI)
-summary(Insurance_Data_Group15$Children)
-hist(Insurance_Data_Group15$Children)
-
-
-```
-# Question 2
+## Question 2
 
 Perform bivariate analyses on the quantitative variables (direction, strength and form). Describe the linear association between all variables. 
 
@@ -153,7 +137,7 @@ Closer to -1, the stronger the negative linear relationship
 Closer to 1, the stronger the positive linear relationship
 Closer to 0, the weaker the linear relationship
 
-```{r  q2}
+```{r  q2Correlation}
 cor(Insurance_Data_Group15$Charges,Insurance_Data_Group15$Age)
 cor(Insurance_Data_Group15$Charges,Insurance_Data_Group15$BMI)
 cor(Insurance_Data_Group15$Charges,Insurance_Data_Group15$Children)
@@ -166,7 +150,7 @@ cor(Insurance_Data_Group15$BMI,Insurance_Data_Group15$Children)
 Visualize this relationship with a scatterplot
 
 
-```{r  q2}
+```{r  q2Plot}
 plot(Insurance_Data_Group15$Charges,Insurance_Data_Group15$Age,
      xlab = "Charges",
      ylab = "Age")
@@ -187,12 +171,8 @@ plot(Insurance_Data_Group15$BMI,Insurance_Data_Group15$Children,
      ylab = "Children")
 
 ```
-LEO's 190-192
-```{r q2}
-plot(Insurance_Data_Group15$Age, Insurance_Data_Group15$Charges)
 
-```
-# Question 3
+## Question 3
 
 Generate a regression equation in the following form:
 
