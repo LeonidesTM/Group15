@@ -101,7 +101,7 @@ newPrediction <- data.frame(Age = 35, BMI = 26, Children = 1, Female = 1, Smoker
 predict(model, newdata = newPrediction, interval = "confidence", level = .95)
 
 ```
-
+Our prediction is that the amount of medical expenses associated with this policy is $4866.82
 
 ## Question 4
 
