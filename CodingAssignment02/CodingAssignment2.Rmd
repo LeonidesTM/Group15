@@ -49,9 +49,10 @@ insurance <- read.csv("../Data/Insurance_Data_Group15.csv")
 Generate this regression equation:
 
 $$Charges = \beta_{0}+\beta_{1}*Age+\beta_{2}*BMI+\beta_{3}*Children + \beta_{4}*Female + \beta_{5}*Smoker + \beta_{6}*WinterSprings + \beta_{7}*WinterPark + \beta_{8}*Oviedo$$
+charges = -7961.05 + 239.58*Age + 191.67*BMI + 732.97*Children + -1273.75*Female + 24367.51*Smoker + 1532.91*WinterSprings + 2052.98*WinterPark + -1238.64*Oviedo
 
 ```{r q1}
-model <- lm(Insurance_Data_Group15$Charges ~ Insurance_Data_Group15$Age + Insurance_Data_Group15$BMI + Insurance_Data_Group15$Children + Insurance_Data_Group15$Female + Insurance_Data_Group15$Smoker + Insurance_Data_Group15$WinterSprings + Insurance_Data_Group15$WinterPark + Insurance_Data_Group15$Oviedo, data = Insurance_Data_Group15)
+model <- lm(Charges ~ Age + BMI + Children + Female + Smoker + WinterSprings + WinterPark + Oviedo, data = Insurance_Data_Group15)
 summary(model)
 
 charges <- -7961.05 + 239.58 + 191.67 + 732.97 + -1273.75 + 24367.51 + 1532.91 + 2052.98 + -1238.64
@@ -71,6 +72,14 @@ Which independent variables test significant in a two-tailed test? Use $\alpha =
 
 Interpret the coefficients of all the independent variables that tested significant.
 
+Age - Significant
+BMI - Significant
+Children - Not significant
+Female - Not significant
+Smoker - Significant
+Winter Springs - Not significant
+Winter Park - Not significant
+Oviedo - Not significant
 
 ## Question 3
 
@@ -87,12 +96,12 @@ Using the regression equation above, predict the amount of medical expenses asso
 
 ```{r q3}
 
-newPrediction <- data.frame(Age = 35, BMI = 26, Children = 1, Female = 1, Smoker = 0, Sanford = 1)
+newPrediction <- data.frame(Age = 35, BMI = 26, Children = 1, Female = 1, Smoker = 0, Sanford = 1, WinterSprings = 0, WinterPark = 0, Oviedo = 0)
 
-predict(model, charges = newPrediction, interval = "confidence", level = .95)
+predict(model, newdata = newPrediction, interval = "confidence", level = .95)
 
 ```
-
+Our prediction is that the amount of medical expenses associated with this policy is $4866.82
 
 ## Question 4
 
@@ -102,6 +111,3 @@ Compare the model from question 1, to a model that does not include the group of
 
 
 ```
-
-
-
