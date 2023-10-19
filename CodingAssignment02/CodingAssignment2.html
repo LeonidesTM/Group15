@@ -1513,32 +1513,32 @@ all output, plots, etc. within this report.</p>
 <p><span class="math display">\[Charges =
 \beta_{0}+\beta_{1}*Age+\beta_{2}*BMI+\beta_{3}*Children +
 \beta_{4}*Female + \beta_{5}*Smoker + \beta_{6}*WinterSprings +
-\beta_{7}*WinterPark + \beta_{8}*Oviedo\]</span></p>
-<pre class="r"><code>model &lt;- lm(Insurance_Data_Group15$Charges ~ Insurance_Data_Group15$Age + Insurance_Data_Group15$BMI + Insurance_Data_Group15$Children + Insurance_Data_Group15$Female + Insurance_Data_Group15$Smoker + Insurance_Data_Group15$WinterSprings + Insurance_Data_Group15$WinterPark + Insurance_Data_Group15$Oviedo, data = Insurance_Data_Group15)
+\beta_{7}*WinterPark + \beta_{8}*Oviedo\]</span> charges = -7961.05 +
+239.58<em>Age + 191.67</em>BMI + 732.97<em>Children +
+-1273.75</em>Female + 24367.51<em>Smoker + 1532.91</em>WinterSprings +
+2052.98<em>WinterPark + -1238.64</em>Oviedo</p>
+<pre class="r"><code>model &lt;- lm(Charges ~ Age + BMI + Children + Female + Smoker + WinterSprings + WinterPark + Oviedo, data = Insurance)
 summary(model)</code></pre>
 <pre><code>## 
 ## Call:
-## lm(formula = Insurance_Data_Group15$Charges ~ Insurance_Data_Group15$Age + 
-##     Insurance_Data_Group15$BMI + Insurance_Data_Group15$Children + 
-##     Insurance_Data_Group15$Female + Insurance_Data_Group15$Smoker + 
-##     Insurance_Data_Group15$WinterSprings + Insurance_Data_Group15$WinterPark + 
-##     Insurance_Data_Group15$Oviedo, data = Insurance_Data_Group15)
+## lm(formula = Charges ~ Age + BMI + Children + Female + Smoker + 
+##     WinterSprings + WinterPark + Oviedo, data = Insurance)
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
 ## -13035.0  -2711.2   -842.7   1800.1  27533.3 
 ## 
 ## Coefficients:
-##                                      Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)                          -7961.05    3663.93  -2.173   0.0324 *  
-## Insurance_Data_Group15$Age             239.58      45.01   5.323  7.3e-07 ***
-## Insurance_Data_Group15$BMI             191.67      96.72   1.982   0.0505 .  
-## Insurance_Data_Group15$Children        732.97     526.00   1.393   0.1669    
-## Insurance_Data_Group15$Female        -1273.75    1278.38  -0.996   0.3217    
-## Insurance_Data_Group15$Smoker        24367.51    1687.75  14.438  &lt; 2e-16 ***
-## Insurance_Data_Group15$WinterSprings  1532.91    1692.05   0.906   0.3674    
-## Insurance_Data_Group15$WinterPark     2052.98    1867.64   1.099   0.2746    
-## Insurance_Data_Group15$Oviedo        -1238.64    2015.57  -0.615   0.5404    
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   -7961.05    3663.93  -2.173   0.0324 *  
+## Age             239.58      45.01   5.323  7.3e-07 ***
+## BMI             191.67      96.72   1.982   0.0505 .  
+## Children        732.97     526.00   1.393   0.1669    
+## Female        -1273.75    1278.38  -0.996   0.3217    
+## Smoker        24367.51    1687.75  14.438  &lt; 2e-16 ***
+## WinterSprings  1532.91    1692.05   0.906   0.3674    
+## WinterPark     2052.98    1867.64   1.099   0.2746    
+## Oviedo        -1238.64    2015.57  -0.615   0.5404    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
@@ -1549,7 +1549,7 @@ summary(model)</code></pre>
 <pre class="r"><code>summ(model)</code></pre>
 <pre><code>## MODEL INFO:
 ## Observations: 100
-## Dependent Variable: Insurance_Data_Group15$Charges
+## Dependent Variable: Charges
 ## Type: OLS linear regression 
 ## 
 ## MODEL FIT:
@@ -1558,38 +1558,38 @@ summary(model)</code></pre>
 ## Adj. R² = 0.72 
 ## 
 ## Standard errors: OLS
-## -------------------------------------------------------------------------------
-##                                                  Est.      S.E.   t val.      p
-## ------------------------------------------ ---------- --------- -------- ------
-## (Intercept)                                  -7961.05   3663.93    -2.17   0.03
-## Insurance_Data_Group15$Age                     239.58     45.01     5.32   0.00
-## Insurance_Data_Group15$BMI                     191.67     96.72     1.98   0.05
-## Insurance_Data_Group15$Children                732.97    526.00     1.39   0.17
-## Insurance_Data_Group15$Female                -1273.75   1278.38    -1.00   0.32
-## Insurance_Data_Group15$Smoker                24367.51   1687.75    14.44   0.00
-## Insurance_Data_Group15$WinterSprings          1532.91   1692.05     0.91   0.37
-## Insurance_Data_Group15$WinterPark             2052.98   1867.64     1.10   0.27
-## Insurance_Data_Group15$Oviedo                -1238.64   2015.57    -0.61   0.54
-## -------------------------------------------------------------------------------</code></pre>
+## --------------------------------------------------------
+##                           Est.      S.E.   t val.      p
+## ------------------- ---------- --------- -------- ------
+## (Intercept)           -7961.05   3663.93    -2.17   0.03
+## Age                     239.58     45.01     5.32   0.00
+## BMI                     191.67     96.72     1.98   0.05
+## Children                732.97    526.00     1.39   0.17
+## Female                -1273.75   1278.38    -1.00   0.32
+## Smoker                24367.51   1687.75    14.44   0.00
+## WinterSprings          1532.91   1692.05     0.91   0.37
+## WinterPark             2052.98   1867.64     1.10   0.27
+## Oviedo                -1238.64   2015.57    -0.61   0.54
+## --------------------------------------------------------</code></pre>
 <pre class="r"><code>tbl_regression(model)</code></pre>
 <pre><code>## Registered S3 methods overwritten by &#39;broom&#39;:
 ##   method            from  
 ##   tidy.glht         jtools
 ##   tidy.summary.glht jtools</code></pre>
-<div id="rwglohbulg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rwglohbulg table {
+<div id="oeiueeqwpx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#oeiueeqwpx table {
 font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 }
-#rwglohbulg thead, #rwglohbulg tbody, #rwglohbulg tfoot, #rwglohbulg tr, #rwglohbulg td, #rwglohbulg th {
+#oeiueeqwpx thead, #oeiueeqwpx tbody, #oeiueeqwpx tfoot, #oeiueeqwpx tr, #oeiueeqwpx td, #oeiueeqwpx th {
 border-style: none;
 }
-#rwglohbulg p {
+#oeiueeqwpx p {
 margin: 0;
 padding: 0;
 }
-#rwglohbulg .gt_table {
+#oeiueeqwpx .gt_table {
 display: table;
 border-collapse: collapse;
 line-height: normal;
@@ -1614,11 +1614,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#rwglohbulg .gt_caption {
+#oeiueeqwpx .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#rwglohbulg .gt_title {
+#oeiueeqwpx .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -1629,7 +1629,7 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#rwglohbulg .gt_subtitle {
+#oeiueeqwpx .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
@@ -1640,7 +1640,7 @@ padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#rwglohbulg .gt_heading {
+#oeiueeqwpx .gt_heading {
 background-color: #FFFFFF;
 text-align: center;
 border-bottom-color: #FFFFFF;
@@ -1651,12 +1651,12 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#rwglohbulg .gt_bottom_border {
+#oeiueeqwpx .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#rwglohbulg .gt_col_headings {
+#oeiueeqwpx .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -1670,7 +1670,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#rwglohbulg .gt_col_heading {
+#oeiueeqwpx .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -1689,7 +1689,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#rwglohbulg .gt_column_spanner_outer {
+#oeiueeqwpx .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -1700,13 +1700,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#rwglohbulg .gt_column_spanner_outer:first-child {
+#oeiueeqwpx .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#rwglohbulg .gt_column_spanner_outer:last-child {
+#oeiueeqwpx .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#rwglohbulg .gt_column_spanner {
+#oeiueeqwpx .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -1717,10 +1717,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#rwglohbulg .gt_spanner_row {
+#oeiueeqwpx .gt_spanner_row {
 border-bottom-style: hidden;
 }
-#rwglohbulg .gt_group_heading {
+#oeiueeqwpx .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -1745,7 +1745,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#rwglohbulg .gt_empty_group_heading {
+#oeiueeqwpx .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -1759,13 +1759,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#rwglohbulg .gt_from_md > :first-child {
+#oeiueeqwpx .gt_from_md > :first-child {
 margin-top: 0;
 }
-#rwglohbulg .gt_from_md > :last-child {
+#oeiueeqwpx .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#rwglohbulg .gt_row {
+#oeiueeqwpx .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -1783,7 +1783,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#rwglohbulg .gt_stub {
+#oeiueeqwpx .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -1795,7 +1795,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#rwglohbulg .gt_stub_row_group {
+#oeiueeqwpx .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -1808,13 +1808,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#rwglohbulg .gt_row_group_first td {
+#oeiueeqwpx .gt_row_group_first td {
 border-top-width: 2px;
 }
-#rwglohbulg .gt_row_group_first th {
+#oeiueeqwpx .gt_row_group_first th {
 border-top-width: 2px;
 }
-#rwglohbulg .gt_summary_row {
+#oeiueeqwpx .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -1823,14 +1823,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#rwglohbulg .gt_first_summary_row {
+#oeiueeqwpx .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#rwglohbulg .gt_first_summary_row.thick {
+#oeiueeqwpx .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#rwglohbulg .gt_last_summary_row {
+#oeiueeqwpx .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -1839,7 +1839,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#rwglohbulg .gt_grand_summary_row {
+#oeiueeqwpx .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -1848,7 +1848,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#rwglohbulg .gt_first_grand_summary_row {
+#oeiueeqwpx .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -1857,7 +1857,7 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#rwglohbulg .gt_last_grand_summary_row_top {
+#oeiueeqwpx .gt_last_grand_summary_row_top {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -1866,10 +1866,10 @@ border-bottom-style: double;
 border-bottom-width: 6px;
 border-bottom-color: #D3D3D3;
 }
-#rwglohbulg .gt_striped {
+#oeiueeqwpx .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#rwglohbulg .gt_table_body {
+#oeiueeqwpx .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -1877,7 +1877,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#rwglohbulg .gt_footnotes {
+#oeiueeqwpx .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -1890,7 +1890,7 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#rwglohbulg .gt_footnote {
+#oeiueeqwpx .gt_footnote {
 margin: 0px;
 font-size: 90%;
 padding-top: 4px;
@@ -1898,7 +1898,7 @@ padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#rwglohbulg .gt_sourcenotes {
+#oeiueeqwpx .gt_sourcenotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -1911,57 +1911,57 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#rwglohbulg .gt_sourcenote {
+#oeiueeqwpx .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#rwglohbulg .gt_left {
+#oeiueeqwpx .gt_left {
 text-align: left;
 }
-#rwglohbulg .gt_center {
+#oeiueeqwpx .gt_center {
 text-align: center;
 }
-#rwglohbulg .gt_right {
+#oeiueeqwpx .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#rwglohbulg .gt_font_normal {
+#oeiueeqwpx .gt_font_normal {
 font-weight: normal;
 }
-#rwglohbulg .gt_font_bold {
+#oeiueeqwpx .gt_font_bold {
 font-weight: bold;
 }
-#rwglohbulg .gt_font_italic {
+#oeiueeqwpx .gt_font_italic {
 font-style: italic;
 }
-#rwglohbulg .gt_super {
+#oeiueeqwpx .gt_super {
 font-size: 65%;
 }
-#rwglohbulg .gt_footnote_marks {
+#oeiueeqwpx .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
 position: initial;
 }
-#rwglohbulg .gt_asterisk {
+#oeiueeqwpx .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#rwglohbulg .gt_indent_1 {
+#oeiueeqwpx .gt_indent_1 {
 text-indent: 5px;
 }
-#rwglohbulg .gt_indent_2 {
+#oeiueeqwpx .gt_indent_2 {
 text-indent: 10px;
 }
-#rwglohbulg .gt_indent_3 {
+#oeiueeqwpx .gt_indent_3 {
 text-indent: 15px;
 }
-#rwglohbulg .gt_indent_4 {
+#oeiueeqwpx .gt_indent_4 {
 text-indent: 20px;
 }
-#rwglohbulg .gt_indent_5 {
+#oeiueeqwpx .gt_indent_5 {
 text-indent: 25px;
 }
 </style>
@@ -1976,35 +1976,35 @@ text-indent: 25px;
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td headers="label" class="gt_row gt_left">Insurance_Data_Group15$Age</td>
+    <tr><td headers="label" class="gt_row gt_left">Age</td>
 <td headers="estimate" class="gt_row gt_center">240</td>
 <td headers="ci" class="gt_row gt_center">150, 329</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">Insurance_Data_Group15$BMI</td>
+    <tr><td headers="label" class="gt_row gt_left">BMI</td>
 <td headers="estimate" class="gt_row gt_center">192</td>
 <td headers="ci" class="gt_row gt_center">-0.45, 384</td>
 <td headers="p.value" class="gt_row gt_center">0.051</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">Insurance_Data_Group15$Children</td>
+    <tr><td headers="label" class="gt_row gt_left">Children</td>
 <td headers="estimate" class="gt_row gt_center">733</td>
 <td headers="ci" class="gt_row gt_center">-312, 1,778</td>
 <td headers="p.value" class="gt_row gt_center">0.2</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">Insurance_Data_Group15$Female</td>
+    <tr><td headers="label" class="gt_row gt_left">Female</td>
 <td headers="estimate" class="gt_row gt_center">-1,274</td>
 <td headers="ci" class="gt_row gt_center">-3,813, 1,266</td>
 <td headers="p.value" class="gt_row gt_center">0.3</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">Insurance_Data_Group15$Smoker</td>
+    <tr><td headers="label" class="gt_row gt_left">Smoker</td>
 <td headers="estimate" class="gt_row gt_center">24,368</td>
 <td headers="ci" class="gt_row gt_center">21,015, 27,720</td>
 <td headers="p.value" class="gt_row gt_center">&lt;0.001</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">Insurance_Data_Group15$WinterSprings</td>
+    <tr><td headers="label" class="gt_row gt_left">WinterSprings</td>
 <td headers="estimate" class="gt_row gt_center">1,533</td>
 <td headers="ci" class="gt_row gt_center">-1,828, 4,894</td>
 <td headers="p.value" class="gt_row gt_center">0.4</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">Insurance_Data_Group15$WinterPark</td>
+    <tr><td headers="label" class="gt_row gt_left">WinterPark</td>
 <td headers="estimate" class="gt_row gt_center">2,053</td>
 <td headers="ci" class="gt_row gt_center">-1,657, 5,763</td>
 <td headers="p.value" class="gt_row gt_center">0.3</td></tr>
-    <tr><td headers="label" class="gt_row gt_left">Insurance_Data_Group15$Oviedo</td>
+    <tr><td headers="label" class="gt_row gt_left">Oviedo</td>
 <td headers="estimate" class="gt_row gt_center">-1,239</td>
 <td headers="ci" class="gt_row gt_center">-5,242, 2,765</td>
 <td headers="p.value" class="gt_row gt_center">0.5</td></tr>
@@ -2024,6 +2024,9 @@ Use <span class="math inline">\(\alpha = 0.2\)</span></p>
 <h2>Question 2</h2>
 <p>Interpret the coefficients of all the independent variables that
 tested significant.</p>
+<p>Age - Significant BMI - Significant Children - Not significant Female
+- Not significant Smoker - Significant Winter Springs - Not significant
+Winter Park - Not significant Oviedo - Not significant</p>
 </div>
 <div id="question-3" class="section level2">
 <h2>Question 3</h2>
@@ -2039,110 +2042,13 @@ tested significant.</p>
 <p>Using the regression equation above, predict the amount of medical
 expenses associated with this policy. (Provide a 95% confidence interval
 as well)</p>
-<pre class="r"><code>newPrediction &lt;- data.frame(Age = 35, BMI = 26, Children = 1, Female = 1, Smoker = 0, Sanford = 1)
+<pre class="r"><code>newPrediction &lt;- data.frame(Age = 35, BMI = 26, Children = 1, Female = 1, Smoker = 0, Sanford = 1, WinterSprings = 0, WinterPark = 0, Oviedo = 0)
 
-predict(model, charges = newPrediction, interval = &quot;confidence&quot;, level = .95)</code></pre>
-<pre><code>##             fit          lwr       upr
-## 1   12930.00387  9525.926911 16334.081
-## 2   -1374.28455 -5404.498101  2655.929
-## 3    6120.20766  2330.483166  9909.932
-## 4    8770.98742  5359.341297 12182.634
-## 5   10781.84312  7829.175646 13734.511
-## 6    7082.30935  4027.655752 10136.963
-## 7      91.13498 -3677.658394  3859.928
-## 8    9278.93590  6309.382780 12248.489
-## 9   28041.60498 23593.435993 32489.774
-## 10  35470.94160 31257.436197 39684.447
-## 11  12535.56966  9168.263770 15902.876
-## 12   7140.07342  2965.470770 11314.676
-## 13   7145.41600  3751.709674 10539.122
-## 14  13836.15323 10174.653848 17497.653
-## 15    384.41294 -3512.626394  4281.452
-## 16   2018.42687 -1406.586934  5443.441
-## 17   5347.33877  1903.504936  8791.173
-## 18   9918.61496  6260.676408 13576.554
-## 19  14465.33764 10672.832573 18257.843
-## 20  34643.37905 29811.322559 39475.436
-## 21  11351.94292  7539.026762 15164.859
-## 22  10670.02047  8088.857907 13251.183
-## 23  11204.61060  8300.271396 14108.950
-## 24  12602.66120  9441.877989 15763.444
-## 25  28337.62725 24237.444114 32437.810
-## 26  28041.52077 23427.906694 32655.135
-## 27  15485.59641 11649.354306 19321.839
-## 28  12159.25655  9383.092477 14935.421
-## 29   6186.02741  2708.291175  9663.764
-## 30   8780.34126  6142.437820 11418.245
-## 31   7618.97130  4198.001438 11039.941
-## 32   5237.34650  2102.698033  8371.995
-## 33   8416.80859  3727.651459 13105.966
-## 34   7469.89555  4168.280827 10771.510
-## 35  11091.03101  7456.457868 14725.604
-## 36  11013.89804  8064.893864 13962.902
-## 37   3639.61657    -7.694926  7286.928
-## 38   1711.51626 -2000.413418  5423.446
-## 39  14637.22293 10463.444906 18811.001
-## 40   2200.50988 -1234.247424  5635.267
-## 41   7964.74178  4274.779861 11654.704
-## 42   3975.27077   153.481340  7797.060
-## 43  11316.72483  7955.753624 14677.696
-## 44   7354.21183  4421.367314 10287.056
-## 45   4680.32789   577.853438  8782.802
-## 46  12114.49769  8968.618743 15260.377
-## 47  38986.78834 34712.435794 43261.141
-## 48  14136.38889 10397.420221 17875.358
-## 49   5761.06852  2665.595027  8856.542
-## 50  12264.12538  8677.849648 15850.401
-## 51   9774.94099  7229.358214 12320.524
-## 52  17901.62158 12329.384388 23473.859
-## 53  33801.83615 29451.478284 38152.194
-## 54   5178.67240  1682.884698  8674.460
-## 55  14686.06288 11245.133496 18126.992
-## 56   6303.47297  3011.177397  9595.769
-## 57   1035.23485 -2542.988886  4613.459
-## 58  35674.96076 31782.397371 39567.524
-## 59  13593.85431  9975.785701 17211.923
-## 60   9089.46473  5741.543053 12437.386
-## 61   9448.16340  6826.100837 12070.226
-## 62  10742.15782  6584.210483 14900.105
-## 63  35618.82164 31174.235402 40063.408
-## 64   5179.77464  2344.739853  8014.809
-## 65  37050.82649 32959.989235 41141.664
-## 66   5386.13015  1639.792902  9132.467
-## 67   9731.88803  6229.656689 13234.119
-## 68  35273.52304 31045.347198 39501.699
-## 69  11543.18357  7857.198258 15229.169
-## 70  12880.66949  7812.956809 17948.382
-## 71     -8.50527 -3745.557421  3728.547
-## 72   5198.16216  1244.318879  9152.005
-## 73   9127.27080  6162.341034 12092.201
-## 74   9779.79336  6267.135956 13292.451
-## 75  11254.14837  7880.113855 14628.183
-## 76  31818.50611 27856.188620 35780.824
-## 77  31627.65945 27556.058240 35699.261
-## 78  13334.88569  8981.713155 17688.058
-## 79   8807.76239  5156.120622 12459.404
-## 80  11136.85546  7577.791361 14695.920
-## 81   3060.67376  -666.619949  6787.967
-## 82  12441.27527  8788.709882 16093.841
-## 83   9421.86305  5403.098692 13440.627
-## 84   5764.42214  2645.018655  8883.826
-## 85  10972.37639  6634.085878 15310.667
-## 86   6137.01976  2318.821214  9955.218
-## 87   7314.51957  4340.812659 10288.226
-## 88   2361.90153 -1400.863823  6124.667
-## 89   3282.70223  -257.775605  6823.180
-## 90   5662.64403  2221.890153  9103.398
-## 91  11982.26591  8621.610304 15342.922
-## 92  22605.26041 17701.782506 27508.738
-## 93  35059.55896 30793.623513 39325.494
-## 94   9243.19519  5715.821644 12770.569
-## 95  30221.65649 26133.152657 34310.160
-## 96   4044.81237    -8.603249  8098.228
-## 97   7763.41268  4867.530944 10659.294
-## 98   5462.69991  2184.584581  8740.815
-## 99  31429.59370 27670.673986 35188.513
-## 100   838.62914 -2764.946303  4442.205</code></pre>
+predict(model, newdata = newPrediction, interval = &quot;confidence&quot;, level = .95)</code></pre>
+<pre><code>##        fit      lwr      upr
+## 1 4866.817 1692.531 8041.103</code></pre>
+<p>Our prediction is that the amount of medical expenses associated with
+this policy is $4866.82</p>
 </div>
 <div id="question-4" class="section level2">
 <h2>Question 4</h2>
