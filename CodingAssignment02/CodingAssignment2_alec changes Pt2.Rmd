@@ -1,0 +1,126 @@
+---
+title: "Coding Assignment 2"
+author: "Team 15"
+date: "Due: 2023-10-22 23:59"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(readxl)
+library(plotly)
+library(corrplot)
+library(dplyr) # for pipe operator
+library(gt) # for fancier tables
+library(gtsummary) # for fancier summary statistics
+library(corrplot) # for fancier correlations
+library(car) # for easier scatterplots
+library(jtools) # for fancier regression output
+
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+A Florida health insurance company wants to predict annual claims for individual clients. The company pulls a random sample of 100 customers. The owner wishes to charge an actuarially fair premium to ensure a normal rate of return. The owner collects all of their current customer’s health care expenses from the last year and compares them with what is known about each customer’s plan. 
+
+The data on the 100 customers in the sample is as follows:
+
+-	Charges: Total medical expenses for a particular insurance plan (in dollars)
+-	Age: Age of the primary beneficiary
+-	BMI: Primary beneficiary’s body mass index (kg/m2)
+-	Female: Primary beneficiary’s birth sex (0 = Male, 1 = Female)
+-	Children: Number of children covered by health insurance plan (includes other dependents as well)
+-	Smoker: Indicator if primary beneficiary is a smoker (0 = non-smoker, 1 = smoker)
+-	Cities: Dummy variables for each city with the default being Sanford
+
+Answer the following questions using complete sentences and attach all output, plots, etc. within this report.
+
+
+```{r dataset, include=FALSE}
+insurance <- read.csv("../Data/Insurance_Data_Group15.csv")
+```
+
+
+
+## Question 1
+
+Generate this regression equation:
+
+$$Charges = \beta_{0}+\beta_{1}*Age+\beta_{2}*BMI+\beta_{3}*Children + \beta_{4}*Female + \beta_{5}*Smoker + \beta_{6}*WinterSprings + \beta_{7}*WinterPark + \beta_{8}*Oviedo$$
+charges = -7961.05 + 239.58*Age + 191.67*BMI + 732.97*Children + -1273.75*Female + 24367.51*Smoker + 1532.91*WinterSprings + 2052.98*WinterPark + -1238.64*Oviedo
+
+```{r q1}
+model <- lm(Charges ~ Age + BMI + Children + Female + Smoker + WinterSprings + WinterPark + Oviedo, data = Insurance_Data_Group15)
+summary(model)
+
+charges <- -7961.05 + 239.58 + 191.67 + 732.97 + -1273.75 + 24367.51 + 1532.91 + 2052.98 + -1238.64
+
+
+```
+```{r}
+
+summ(model)
+tbl_regression(model)
+
+```
+Which independent variables test significant in a two-tailed test? Use $\alpha = 0.2$
+
+###Answer
+Age - Significant
+BMI - Significant
+Children - Significant
+Female - Not significant
+Smoker - Significant
+Winter Springs - Not significant
+Winter Park - Not significant
+Oviedo - Not significant
+
+## Question 2
+
+Interpret the coefficients of all the independent variables that tested significant.
+
+###Answer
+Age - Significant - 239.58
+BMI - Significant - 191.67
+Children - Significant - 732.97
+Smoker - Significant - 24367.51
+
+## Question 3
+
+The insurance agent returns with another client:
+
+- Age: 35
+- BMI: 26
+- Children: 1
+- Gender: Female
+- Smoker: No
+- City: Sanford
+
+Using the regression equation above, predict the amount of medical expenses associated with this policy. (Provide a 95% confidence interval as well)
+
+```{r q3}
+
+newPrediction <- data.frame(Age = 35, BMI = 26, Children = 1, Female = 1, Smoker = 0, Sanford = 1, WinterSprings = 0, WinterPark = 0, Oviedo = 0)
+
+predict(model, newdata = newPrediction, interval = "confidence", level = .95)
+
+```
+###Answer
+Our prediction is that the amount of medical expenses associated with this policy is $4866.82
+
+## Question 4
+
+Compare the model from question 1, to a model that does not include the group of city dummies. Does including the cities reduce the SSE by a statistically significant amount? (check the partial F-test for significance of the dummies as a group). Use $\alpha = 0.05$
+
+```{r q4}
+# Fit a model without city dummies
+model_no_cities <- lm(Charges ~ Age + BMI + Female + Children + Smoker, data = Insurance_Data_Group15)
+
+# Perform the partial F-test to compare the two models
+anova(model_no_cities, model)
+
+```
+###Answer
+Since our P value for "Model 2" is greater than our chosen alpha (0.05), it indicates that our city dummies do not significantly reduce the SSE value
