@@ -67,19 +67,22 @@ tbl_regression(model)
 ```
 Which independent variables test significant in a two-tailed test? Use $\alpha = 0.2$
 
-
-## Question 2
-
-Interpret the coefficients of all the independent variables that tested significant.
-
 Age - Significant
 BMI - Significant
-Children - Not significant
+Children - Significant
 Female - Not significant
 Smoker - Significant
 Winter Springs - Not significant
 Winter Park - Not significant
 Oviedo - Not significant
+## Question 2
+
+Interpret the coefficients of all the independent variables that tested significant.
+
+Age - Significant - 239.58
+BMI - Significant - 191.67
+Children - Significant - 732.97
+Smoker - Significant - 24367.51
 
 ## Question 3
 
