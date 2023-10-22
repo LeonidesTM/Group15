@@ -67,19 +67,25 @@ tbl_regression(model)
 ```
 Which independent variables test significant in a two-tailed test? Use $\alpha = 0.2$
 
-
-## Question 2
-
-Interpret the coefficients of all the independent variables that tested significant.
-
+###Answer
 Age - Significant
 BMI - Significant
-Children - Not significant
+Children - Significant
 Female - Not significant
 Smoker - Significant
 Winter Springs - Not significant
 Winter Park - Not significant
 Oviedo - Not significant
+
+## Question 2
+
+Interpret the coefficients of all the independent variables that tested significant.
+
+###Answer
+Age - Significant - 239.58
+BMI - Significant - 191.67
+Children - Significant - 732.97
+Smoker - Significant - 24367.51
 
 ## Question 3
 
@@ -101,6 +107,7 @@ newPrediction <- data.frame(Age = 35, BMI = 26, Children = 1, Female = 1, Smoker
 predict(model, newdata = newPrediction, interval = "confidence", level = .95)
 
 ```
+###Answer
 Our prediction is that the amount of medical expenses associated with this policy is $4866.82
 
 ## Question 4
@@ -108,6 +115,12 @@ Our prediction is that the amount of medical expenses associated with this polic
 Compare the model from question 1, to a model that does not include the group of city dummies. Does including the cities reduce the SSE by a statistically significant amount? (check the partial F-test for significance of the dummies as a group). Use $\alpha = 0.05$
 
 ```{r q4}
+# Fit a model without city dummies
+model_no_cities <- lm(Charges ~ Age + BMI + Female + Children + Smoker, data = Insurance)
 
+# Perform the partial F-test to compare the two models
+anova(model_no_cities, model)
 
 ```
+###Answer
+Since our P value for "Model 2" is greater than our chosen alpha (0.05), it indicates that our city dummies do not significantly reduce the SSE value
