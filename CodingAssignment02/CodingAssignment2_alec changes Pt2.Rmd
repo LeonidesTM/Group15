@@ -39,7 +39,7 @@ Answer the following questions using complete sentences and attach all output, p
 
 
 ```{r dataset, include=FALSE}
-Insurance <- read.csv("../Data/Insurance_Data_Group15.csv")
+insurance <- read.csv("../Data/Insurance_Data_Group15.csv")
 ```
 
 
@@ -52,7 +52,7 @@ $$Charges = \beta_{0}+\beta_{1}*Age+\beta_{2}*BMI+\beta_{3}*Children + \beta_{4}
 charges = -7961.05 + 239.58*Age + 191.67*BMI + 732.97*Children + -1273.75*Female + 24367.51*Smoker + 1532.91*WinterSprings + 2052.98*WinterPark + -1238.64*Oviedo
 
 ```{r q1}
-model <- lm(Charges ~ Age + BMI + Children + Female + Smoker + WinterSprings + WinterPark + Oviedo, data = Insurance)
+model <- lm(Charges ~ Age + BMI + Children + Female + Smoker + WinterSprings + WinterPark + Oviedo, data = Insurance_Data_Group15)
 summary(model)
 
 charges <- -7961.05 + 239.58 + 191.67 + 732.97 + -1273.75 + 24367.51 + 1532.91 + 2052.98 + -1238.64
@@ -116,7 +116,7 @@ Compare the model from question 1, to a model that does not include the group of
 
 ```{r q4}
 # Fit a model without city dummies
-model_no_cities <- lm(Charges ~ Age + BMI + Female + Children + Smoker, data = Insurance)
+model_no_cities <- lm(Charges ~ Age + BMI + Female + Children + Smoker, data = Insurance_Data_Group15)
 
 # Perform the partial F-test to compare the two models
 anova(model_no_cities, model)

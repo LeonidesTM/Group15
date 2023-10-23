@@ -39,7 +39,7 @@ Answer the following questions using complete sentences and attach all output, p
 
 
 ```{r dataset, include=FALSE}
-Insurance <- read.csv("../Data/Insurance_Data_Group15.csv")
+insurance <- read.csv("../Data/Insurance_Data_Group15.csv")
 ```
 
 
@@ -52,7 +52,7 @@ $$Charges = \beta_{0}+\beta_{1}*Age+\beta_{2}*BMI+\beta_{3}*Children + \beta_{4}
 charges = -7961.05 + 239.58*Age + 191.67*BMI + 732.97*Children + -1273.75*Female + 24367.51*Smoker + 1532.91*WinterSprings + 2052.98*WinterPark + -1238.64*Oviedo
 
 ```{r q1}
-model <- lm(Charges ~ Age + BMI + Children + Female + Smoker + WinterSprings + WinterPark + Oviedo, data = Insurance)
+model <- lm(Charges ~ Age + BMI + Children + Female + Smoker + WinterSprings + WinterPark + Oviedo, data = Insurance_Data_Group15)
 summary(model)
 
 charges <- -7961.05 + 239.58 + 191.67 + 732.97 + -1273.75 + 24367.51 + 1532.91 + 2052.98 + -1238.64
@@ -67,7 +67,6 @@ tbl_regression(model)
 ```
 Which independent variables test significant in a two-tailed test? Use $\alpha = 0.2$
 
-###Answer
 Age - Significant
 BMI - Significant
 Children - Significant
@@ -76,12 +75,10 @@ Smoker - Significant
 Winter Springs - Not significant
 Winter Park - Not significant
 Oviedo - Not significant
-
 ## Question 2
 
 Interpret the coefficients of all the independent variables that tested significant.
 
-###Answer
 Age - Significant - 239.58
 BMI - Significant - 191.67
 Children - Significant - 732.97
@@ -107,7 +104,6 @@ newPrediction <- data.frame(Age = 35, BMI = 26, Children = 1, Female = 1, Smoker
 predict(model, newdata = newPrediction, interval = "confidence", level = .95)
 
 ```
-###Answer
 Our prediction is that the amount of medical expenses associated with this policy is $4866.82
 
 ## Question 4
@@ -115,12 +111,9 @@ Our prediction is that the amount of medical expenses associated with this polic
 Compare the model from question 1, to a model that does not include the group of city dummies. Does including the cities reduce the SSE by a statistically significant amount? (check the partial F-test for significance of the dummies as a group). Use $\alpha = 0.05$
 
 ```{r q4}
-# Fit a model without city dummies
-model_no_cities <- lm(Charges ~ Age + BMI + Female + Children + Smoker, data = Insurance)
 
-# Perform the partial F-test to compare the two models
-anova(model_no_cities, model)
 
 ```
-###Answer
-Since our P value for "Model 2" is greater than our chosen alpha (0.05), it indicates that our city dummies do not significantly reduce the SSE value
+
+
+
