@@ -2,15 +2,16 @@
 title: "Coding Assignment 3"
 author: "Team 15"
 date: "Due: 2023-12-09 23:59"
-output: 
-pdf_document:
-toc: true
+output:
+  html_document:
+    toc: yes
+    df_print: paged
+  pdf_document:
+    toc: yes
 ---
 
 ```{r setup, include=FALSE}
-#Put any packages you need here
 library(tidyverse)
-library(lmtest)
 library(readxl)
 library(plotly)
 library(corrplot)
@@ -23,11 +24,11 @@ library(jtools) # for fancier regression output
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-A Florida health insurance company wants to predict annual claims for individual clients. The company pulls a random sample of 100 customers. The owner wishes to charge an actuarially fair premium to ensure a normal rate of return. The owner collects all of their current customer’s health care expenses from the last year and compares them with what is known about each customer’s plan. 
+A Florida health insurance company wants to predict annual claims for individual clients. The company pulls a random sample of 100 customers. The owner wishes to charge an actuarial fair premium to ensure a normal rate of return. The owner collects all of their current customer’s health care expenses from the last year and compares them with what is known about each customer’s plan. 
 
 The data on the 100 customers in the sample is as follows:
-  
-  -	Charges: Total medical expenses for a particular insurance plan (in dollars)
+
+-	Charges: Total medical expenses for a particular insurance plan (in dollars)
 -	Age: Age of the primary beneficiary
 -	BMI: Primary beneficiary’s body mass index (kg/m2)
 -	Female: Primary beneficiary’s birth sex (0 = Male, 1 = Female)
@@ -38,12 +39,10 @@ The data on the 100 customers in the sample is as follows:
 Answer the following questions using complete sentences and attach all output, plots, etc. within this report.
 
 
-```{r dataset, echo=TRUE}
-# Bring in the dataset here.
-read.csv("~/Documents/Insurance_Data_Group15.csv")
-# Bring in the dataset here.
-Insurance_Data_Group15 <- read.csv("~/Documents/Insurance_Data_Group15.csv")
+```{r dataset, include=TRUE}
+Insurance_Data_Group15 <- read.csv("~/Data/Insurance_Data_Group15.csv")
 ```
+
 
 ## Question 1
 
@@ -83,8 +82,9 @@ summary(Model_All_Variables)
 par(mfrow=c(2,2))
 plot(Model_All_Variables)
 ``` 
-## Results
-Based on the plot titled "Residuals vs Fitted", it would appear as if there is a nonlinear pattern, indicating a violation of the 3rd assumption.
+## Answer
+
+Based on the plot titled "Residuals vs Fitted", it would appear as if there is a nonlinear pattern, indicating a violation of the 3rd assumption. A solution would be to log transform the data. 
 
 In the second plot, "Normal Q-Q", you see the assumption of uniformly distributed set of residuals. Since it deviates from the line, we know the 4th assumption may be violated
 
